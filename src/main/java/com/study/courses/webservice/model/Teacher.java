@@ -6,6 +6,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @Document
@@ -28,4 +30,6 @@ public class Teacher {
     private User user;
 
     private Avatar avatar;
+
+    private List<Subject> subjects;
 }
