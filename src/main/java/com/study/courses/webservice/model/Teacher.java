@@ -9,20 +9,23 @@ import org.springframework.data.mongodb.core.mapping.Field;
 @Data
 @AllArgsConstructor
 @Document
-public class Subject {
+public class Teacher {
     @Id
     private String id;
 
     private String name;
 
-    private Language language;
+    private String surname;
 
-    private String CEFR;
+    private String email;
 
-    @Field(name = "url_photo")
-    private String urlPhoto;
+    @Field(name = "phone_number")
+    private String phoneNumber;
 
-    private String description;
+    @Field(name = "study_license")
+    private String studyLicense;
 
-    private Teacher teacher;
+    private User user;
+
+    private Avatar avatar;
 }

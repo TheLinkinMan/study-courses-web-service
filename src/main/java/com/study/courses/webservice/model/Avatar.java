@@ -8,9 +8,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @AllArgsConstructor
 @Document
-public class Language {
+public class Avatar {
     @Id
     private String id;
 
-    private String name;
+    private String url;
 }

@@ -2,15 +2,15 @@ package com.study.courses.webservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @AllArgsConstructor
 @Document
-public class Language {
-    @Id
-    private String id;
-
+public class User {
+    @Indexed
     private String name;
+
+    private String password;
 }
