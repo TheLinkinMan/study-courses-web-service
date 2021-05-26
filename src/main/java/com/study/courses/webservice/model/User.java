@@ -2,15 +2,20 @@ package com.study.courses.webservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-@Document
+@Entity
+@Table(name = "user")
 public class User {
-    @Indexed
-    private String name;
+    @Id
+    private String login;
 
     private String password;
 }

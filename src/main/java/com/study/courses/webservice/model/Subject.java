@@ -2,27 +2,32 @@ package com.study.courses.webservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.List;
+
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-@Document
+@Entity
+@Table(name = "subject")
 public class Subject {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
 
-    private Language language;
+    private int hours;
 
-    private String CEFR;
-
-    @Field(name = "url_photo")
-    private String urlPhoto;
-
-    private String description;
-
+    @ManyToOne(targetEntity = Teacher.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_teacher")
     private Teacher teacher;
+
+    @ManyToMany(targetEntity = Student.class, fetch = FetchType.LAZY)
+    @JoinTable(name = "student_program", joinColumns = @JoinColumn(name = "id_subject"),
+            inverseJoinColumns = @JoinColumn(name = "id_student"))
+    private List<Student> students;
 }

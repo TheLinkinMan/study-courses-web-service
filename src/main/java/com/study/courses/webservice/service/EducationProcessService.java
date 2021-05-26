@@ -58,31 +58,38 @@ public class EducationProcessService implements IEducationProcessService{
         userRepository.save(user);
     }
 
+
+    @Transactional
     @Override
     public void delete(Avatar avatar) {
         avatarRepository.delete(avatar);
     }
 
+    @Transactional
     @Override
     public void delete(Subject subject) {
         subjectRepository.delete(subject);
     }
 
+    @Transactional
     @Override
     public void delete(Student student) {
         studentRepository.delete(student);
     }
 
+    @Transactional
     @Override
     public void delete(Teacher teacher) {
         teacherRepository.save(teacher);
     }
 
+    @Transactional
     @Override
     public void delete(Language language) {
         languageRepository.save(language);
     }
 
+    @Transactional
     @Override
     public void deleteAllSubjectByLanguage(Language language) {
         subjectRepository.deleteAllByLanguage(language);

@@ -6,10 +6,13 @@ import com.study.courses.webservice.model.Teacher;
 import com.study.courses.webservice.repository.SubjectRepository;
 import com.study.courses.webservice.repository.TeacherRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional(readOnly = true)
 @AllArgsConstructor
 @Service
 public class EducationReaderService implements IEducationReaderService {
@@ -18,6 +21,7 @@ public class EducationReaderService implements IEducationReaderService {
 
     private final TeacherRepository teacherRepository;
 
+    @Cacheable("subjects")
     @Override
     public List<Subject> findAllSubjects() {
         return subjectRepository.findAll();

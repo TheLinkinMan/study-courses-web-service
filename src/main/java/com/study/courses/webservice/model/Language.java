@@ -2,15 +2,25 @@ package com.study.courses.webservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-@Document
+@Entity
+@Table(name = "language")
 public class Language {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
+
+    @ManyToMany(targetEntity = Teacher.class, fetch = FetchType.LAZY)
+    @JoinTable(name = "teacher_languages", joinColumns = @JoinColumn(name = "id_language"),
+            inverseJoinColumns = @JoinColumn(name = "id_teacher"))
+    private List<Teacher> teachers;
 }

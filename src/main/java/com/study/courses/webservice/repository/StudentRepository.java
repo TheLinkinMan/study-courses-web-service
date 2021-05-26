@@ -1,7 +1,7 @@
 package com.study.courses.webservice.repository;
 
 import com.study.courses.webservice.model.Student;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface StudentRepository extends MongoRepository<Student, String> {
+public interface StudentRepository extends CrudRepository<Student, String> {
 }

@@ -2,34 +2,44 @@ package com.study.courses.webservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import lombok.NoArgsConstructor;
 
+
+import javax.persistence.*;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-@Document
+@Entity
+@Table(name = "teacher")
 public class Teacher {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private String name;
+    private String fio;
 
-    private String surname;
-
-    private String email;
-
-    @Field(name = "phone_number")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Field(name = "study_license")
+    @Column(name = "study_license")
     private String studyLicense;
 
-    private User user;
-
+    @OneToOne(targetEntity = Avatar.class)
+    @JoinColumn(name = "id_avatar")
     private Avatar avatar;
 
+    @OneToMany(targetEntity = Subject.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_teacher")
     private List<Subject> subjects;
+
+    @ManyToMany(targetEntity = Language.class, fetch = FetchType.LAZY)
+    @JoinTable(name = "teacher_languages", joinColumns = @JoinColumn(name = "id_teacher"),
+            inverseJoinColumns = @JoinColumn(name = "id_language"))
+    private List<Language> languages;
+
+    @OneToOne(targetEntity = User.class)
+    @JoinColumn(name = "login")
+    private User user;
 }
