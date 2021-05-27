@@ -30,4 +30,10 @@ public class Subject {
     @JoinTable(name = "student_program", joinColumns = @JoinColumn(name = "id_subject"),
             inverseJoinColumns = @JoinColumn(name = "id_student"))
     private List<Student> students;
+
+    @ManyToOne(targetEntity = Language.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_language")
+    private Language language;
+
+    private String CEFR;
 }

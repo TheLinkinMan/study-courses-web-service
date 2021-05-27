@@ -1,8 +1,11 @@
 package com.study.courses.webservice.service;
 
 import com.study.courses.webservice.model.Language;
+import com.study.courses.webservice.model.Student;
 import com.study.courses.webservice.model.Subject;
 import com.study.courses.webservice.model.Teacher;
+import com.study.courses.webservice.repository.LanguageRepository;
+import com.study.courses.webservice.repository.StudentRepository;
 import com.study.courses.webservice.repository.SubjectRepository;
 import com.study.courses.webservice.repository.TeacherRepository;
 import lombok.AllArgsConstructor;
@@ -21,54 +24,68 @@ public class EducationReaderService implements IEducationReaderService {
 
     private final TeacherRepository teacherRepository;
 
-    @Cacheable("subjects")
+    private final LanguageRepository languageRepository;
+
+    private final StudentRepository studentRepository;
+
+//    @Cacheable("subjects")
     @Override
     public List<Subject> findAllSubjects() {
-        return subjectRepository.findAll();
+        return (List<Subject>) subjectRepository.findAll();
     }
 
     @Override
     public List<Teacher> findAllTeachers() {
-        return teacherRepository.findAll();
+        return (List<Teacher>) teacherRepository.findAll();
     }
 
     @Override
     public List<Subject> findAllSubjects(Language language) {
-        return subjectRepository.findAllByLanguage(language);
+        return (List<Subject>) subjectRepository.findAllByLanguage(language);
     }
 
     @Override
     public List<Subject> findAllSubjects(String CEFR) {
-        return subjectRepository.findAllByCEFR(CEFR);
+        return (List<Subject>) subjectRepository.findAllByCEFR(CEFR);
     }
 
     @Override
     public List<Subject> findAllSubjects(Teacher teacher) {
-        return subjectRepository.findAllByTeacher(teacher);
+        return (List<Subject>) subjectRepository.findAllByTeacher(teacher);
     }
 
     @Override
     public List<Subject> findAllSubjects(Language language, String CEFR) {
-        return subjectRepository.findAllByLanguageAndCEFR(language, CEFR);
+        return (List<Subject>) subjectRepository.findAllByLanguageAndCEFR(language, CEFR);
     }
 
     @Override
     public List<Subject> findAllSubjectsByName(String name) {
-        return subjectRepository.findAllByName(name);
+        return (List<Subject>) subjectRepository.findAllByName(name);
     }
 
     @Override
-    public Subject findSubject(String id) {
+    public Subject findSubject(Long id) {
         return subjectRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Teacher findTeacher(String id) {
+    public Teacher findTeacher(Long id) {
         return teacherRepository.findById(id).orElse(null);
     }
 
     @Override
+    public Language findLanguage(Long id) {
+        return languageRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public Teacher findTeacher(Subject subject) {
-        return teacherRepository.findBySubjectsIs(subject);
+        return teacherRepository.findBySubjectsIs(subject).orElse(null);
+    }
+
+    @Override
+    public Student findStudent(Long id) {
+        return studentRepository.findById(id).orElse(null);
     }
 }

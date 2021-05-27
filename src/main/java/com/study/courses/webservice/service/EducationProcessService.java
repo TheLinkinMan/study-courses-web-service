@@ -24,38 +24,38 @@ public class EducationProcessService implements IEducationProcessService{
 
     @Transactional
     @Override
-    public void save(Avatar avatar) {
-        avatarRepository.save(avatar);
+    public Avatar save(Avatar avatar) {
+        return avatarRepository.save(avatar);
     }
 
     @Transactional
     @Override
-    public void save(Language language) {
-        languageRepository.save(language);
+    public Language save(Language language) {
+        return languageRepository.save(language);
     }
 
     @Transactional
     @Override
-    public void save(Subject subject) {
-        subjectRepository.save(subject);
+    public Subject save(Subject subject) {
+        return subjectRepository.save(subject);
     }
 
     @Transactional
     @Override
-    public void save(Student student) {
-        studentRepository.save(student);
+    public Student save(Student student) {
+        return studentRepository.save(student);
     }
 
     @Transactional
     @Override
-    public void save(Teacher teacher) {
-        teacherRepository.save(teacher);
+    public Teacher save(Teacher teacher) {
+        return teacherRepository.save(teacher);
     }
 
     @Transactional
     @Override
-    public void save(User user) {
-        userRepository.save(user);
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
 
@@ -87,11 +87,5 @@ public class EducationProcessService implements IEducationProcessService{
     @Override
     public void delete(Language language) {
         languageRepository.save(language);
-    }
-
-    @Transactional
-    @Override
-    public void deleteAllSubjectByLanguage(Language language) {
-        subjectRepository.deleteAllByLanguage(language);
     }
 }

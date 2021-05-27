@@ -1,6 +1,7 @@
 package com.study.courses.webservice.service;
 
 import com.study.courses.webservice.model.Language;
+import com.study.courses.webservice.model.Student;
 import com.study.courses.webservice.model.Subject;
 import com.study.courses.webservice.model.Teacher;
 
@@ -22,9 +23,13 @@ public interface IEducationReaderService {
     List<Subject> findAllSubjectsByName(String name);
 
 
-    Subject findSubject(String id);
+    Subject findSubject(Long id);
 
-    Teacher findTeacher(String id);
+    Teacher findTeacher(Long id);
 
     Teacher findTeacher(Subject subject);
+
+    Language findLanguage(Long id);
+
+    Student findStudent(Long id);
 }

@@ -5,17 +5,17 @@ import com.study.courses.webservice.model.*;
 import java.util.List;
 
 public interface IEducationProcessService {
-    void save(Avatar avatar);
+    Avatar save(Avatar avatar);
 
-    void save(Language language);
+    Language save(Language language);
 
-    void save(Subject subject);
+    Subject save(Subject subject);
 
-    void save(Student student);
+    Student save(Student student);
 
-    void save(Teacher teacher);
+    Teacher save(Teacher teacher);
 
-    void save(User user);
+    User save(User user);
 
 
     void delete(Avatar avatar);
@@ -27,6 +27,4 @@ public interface IEducationProcessService {
     void delete(Teacher teacher);
 
     void delete(Language language);
-
-    void deleteAllSubjectByLanguage(Language language);
 }

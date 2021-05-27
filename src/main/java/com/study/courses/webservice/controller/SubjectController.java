@@ -1,6 +1,5 @@
 package com.study.courses.webservice.controller;
 
-import com.study.courses.webservice.model.Language;
 import com.study.courses.webservice.model.Subject;
 import com.study.courses.webservice.service.EducationProcessService;
 import com.study.courses.webservice.service.EducationReaderService;
@@ -24,8 +23,8 @@ public class SubjectController {
     }
 
     @GetMapping("/{language}")
-    public List<Subject> findAllSubByLanguage(@PathVariable Language language) {
-        return educationReaderService.findAllSubjects(language);
+    public List<Subject> findAllSubByLanguage(@PathVariable Long language) {
+        return educationReaderService.findAllSubjects(educationReaderService.findLanguage(language));
     }
 
     @GetMapping("/{CEFR}")
@@ -34,23 +33,23 @@ public class SubjectController {
     }
 
     @GetMapping("/{language}&{CEFR}")
-    public List<Subject> findAllSubByLanguageAndCEFR(@PathVariable Language language, @PathVariable String CEFR) {
-        return educationReaderService.findAllSubjects(language, CEFR);
+    public List<Subject> findAllSubByLanguageAndCEFR(@PathVariable Long language, @PathVariable String CEFR) {
+        return educationReaderService.findAllSubjects(educationReaderService.findLanguage(language), CEFR);
     }
 
     @GetMapping("/subject/{id}")
-    public Subject findSubject(@PathVariable String id) {
+    public Subject findSubject(@PathVariable Long id) {
         return educationReaderService.findSubject(id);
     }
 
     @PostMapping("/subject")
-    public void save(@RequestBody Subject subject) {
-        educationProcessService.save(subject);
+    public Subject save(@RequestBody Subject subject) {
+        return educationProcessService.save(subject);
     }
 
     @PutMapping("/subject")
-    public void update(@RequestBody Subject subject) {
-        educationProcessService.save(subject);
+    public Subject update(@RequestBody Subject subject) {
+        return educationProcessService.save(subject);
     }
 
     @DeleteMapping("/subject")
