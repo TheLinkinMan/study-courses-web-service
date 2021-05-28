@@ -1,4 +1,4 @@
-package com.study.courses.webservice.model;
+package com.study.courses.webservice.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,5 +16,6 @@ public class Avatar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "url", nullable = false)
     private String url;
 }

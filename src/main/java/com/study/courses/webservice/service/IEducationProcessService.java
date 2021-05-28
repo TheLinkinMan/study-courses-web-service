@@ -1,6 +1,6 @@
 package com.study.courses.webservice.service;
 
-import com.study.courses.webservice.model.*;
+import com.study.courses.webservice.domain.*;
 
 public interface IEducationProcessService {
     Avatar save(Avatar avatar);

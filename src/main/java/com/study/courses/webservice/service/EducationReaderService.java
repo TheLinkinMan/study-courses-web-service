@@ -1,9 +1,9 @@
 package com.study.courses.webservice.service;
 
-import com.study.courses.webservice.model.Language;
-import com.study.courses.webservice.model.Student;
-import com.study.courses.webservice.model.Subject;
-import com.study.courses.webservice.model.Teacher;
+import com.study.courses.webservice.domain.Language;
+import com.study.courses.webservice.domain.Student;
+import com.study.courses.webservice.domain.Subject;
+import com.study.courses.webservice.domain.Teacher;
 import com.study.courses.webservice.repository.LanguageRepository;
 import com.study.courses.webservice.repository.StudentRepository;
 import com.study.courses.webservice.repository.SubjectRepository;

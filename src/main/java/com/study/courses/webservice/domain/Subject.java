@@ -1,11 +1,11 @@
-package com.study.courses.webservice.model;
+package com.study.courses.webservice.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 @Data
@@ -29,11 +29,12 @@ public class Subject {
     @ManyToMany(targetEntity = Student.class, fetch = FetchType.LAZY)
     @JoinTable(name = "student_program", joinColumns = @JoinColumn(name = "id_subject"),
             inverseJoinColumns = @JoinColumn(name = "id_student"))
-    private List<Student> students;
+    private Set<Student> students;
 
     @ManyToOne(targetEntity = Language.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_language")
     private Language language;
 
-    private String CEFR;
+    @Enumerated(EnumType.STRING)
+    private CEFR CEFR;
 }

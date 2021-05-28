@@ -1,8 +1,8 @@
 package com.study.courses.webservice.repository;
 
-import com.study.courses.webservice.model.Language;
-import com.study.courses.webservice.model.Subject;
-import com.study.courses.webservice.model.Teacher;
+import com.study.courses.webservice.domain.Language;
+import com.study.courses.webservice.domain.Subject;
+import com.study.courses.webservice.domain.Teacher;
 import org.springframework.data.repository.CrudRepository;
 
 public interface SubjectRepository extends CrudRepository<Subject, Long> {

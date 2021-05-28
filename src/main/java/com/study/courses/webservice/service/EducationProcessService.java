@@ -1,6 +1,6 @@
 package com.study.courses.webservice.service;
 
-import com.study.courses.webservice.model.*;
+import com.study.courses.webservice.domain.*;
 import com.study.courses.webservice.repository.*;
 import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;

@@ -1,13 +1,14 @@
 package com.study.courses.webservice.controller;
 
-import com.study.courses.webservice.model.Language;
-import com.study.courses.webservice.model.Subject;
+import com.study.courses.webservice.domain.Language;
+import com.study.courses.webservice.domain.Subject;
 import com.study.courses.webservice.service.EducationProcessService;
 import com.study.courses.webservice.service.EducationReaderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @AllArgsConstructor
@@ -47,12 +48,12 @@ public class SubjectController {
     }
 
     @PostMapping("/subject")
-    public ResponseEntity<Subject> save(@RequestBody Subject subject) {
+    public ResponseEntity<Subject> save(@Valid @RequestBody Subject subject) {
         return ResponseEntity.ok(educationProcessService.save(subject));
     }
 
     @PutMapping("/subject")
-    public ResponseEntity<Subject> update(@RequestBody Subject subject) {
+    public ResponseEntity<Subject> update(@Valid @RequestBody Subject subject) {
         return ResponseEntity.ok(educationProcessService.save(subject));
     }
 
