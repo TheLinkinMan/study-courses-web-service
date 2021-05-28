@@ -39,7 +39,7 @@ public class Teacher {
             inverseJoinColumns = @JoinColumn(name = "id_language"))
     private List<Language> languages;
 
-    @OneToOne(targetEntity = User.class)
+    @OneToOne(targetEntity = Users.class)
     @JoinColumn(name = "login")
-    private User user;
+    private Users user;
 }

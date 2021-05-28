@@ -35,7 +35,7 @@ public class Student {
             inverseJoinColumns = @JoinColumn(name = "id_subject"))
     private List<Subject> subjects;
 
-    @OneToOne(targetEntity = User.class)
+    @OneToOne(targetEntity = Users.class)
     @JoinColumn(name = "login")
-    private User user;
+    private Users user;
 }

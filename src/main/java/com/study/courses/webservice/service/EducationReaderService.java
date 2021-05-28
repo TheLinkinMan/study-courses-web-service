@@ -28,12 +28,13 @@ public class EducationReaderService implements IEducationReaderService {
 
     private final StudentRepository studentRepository;
 
-//    @Cacheable("subjects")
+    @Cacheable("subjects")
     @Override
     public List<Subject> findAllSubjects() {
         return (List<Subject>) subjectRepository.findAll();
     }
 
+    @Cacheable("teachers")
     @Override
     public List<Teacher> findAllTeachers() {
         return (List<Teacher>) teacherRepository.findAll();

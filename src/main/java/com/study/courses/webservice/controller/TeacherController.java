@@ -4,6 +4,7 @@ import com.study.courses.webservice.model.Teacher;
 import com.study.courses.webservice.service.EducationProcessService;
 import com.study.courses.webservice.service.EducationReaderService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,22 +19,22 @@ public class TeacherController {
     private final EducationProcessService educationProcessService;
 
     @GetMapping("/")
-    public List<Teacher> findAll() {
-        return educationReaderService.findAllTeachers();
+    public ResponseEntity<List<Teacher>> findAll() {
+        return ResponseEntity.ok(educationReaderService.findAllTeachers());
     }
 
     @GetMapping("/teacher/{id}")
-    public Teacher find(@PathVariable Long id) {
-        return educationReaderService.findTeacher(id);
+    public ResponseEntity<Teacher> find(@PathVariable Long id) {
+        return ResponseEntity.ok(educationReaderService.findTeacher(id));
     }
 
     @PostMapping("/teacher")
-    public Teacher save(@RequestBody Teacher teacher) {
-        return educationProcessService.save(teacher);
+    public ResponseEntity<Teacher> save(@RequestBody Teacher teacher) {
+        return ResponseEntity.ok(educationProcessService.save(teacher));
     }
 
     @PutMapping("/teacher")
-    public Teacher update(@RequestBody Teacher teacher) {
-        return educationProcessService.save(teacher);
+    public ResponseEntity<Teacher> update(@RequestBody Teacher teacher) {
+        return ResponseEntity.ok(educationProcessService.save(teacher));
     }
 }

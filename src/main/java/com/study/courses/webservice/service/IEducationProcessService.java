@@ -2,8 +2,6 @@ package com.study.courses.webservice.service;
 
 import com.study.courses.webservice.model.*;
 
-import java.util.List;
-
 public interface IEducationProcessService {
     Avatar save(Avatar avatar);
 
@@ -15,7 +13,7 @@ public interface IEducationProcessService {
 
     Teacher save(Teacher teacher);
 
-    User save(User user);
+    Users save(Users user);
 
 
     void delete(Avatar avatar);

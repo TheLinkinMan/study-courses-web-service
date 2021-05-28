@@ -3,6 +3,8 @@ package com.study.courses.webservice.service;
 import com.study.courses.webservice.model.*;
 import com.study.courses.webservice.repository.*;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,6 +36,7 @@ public class EducationProcessService implements IEducationProcessService{
         return languageRepository.save(language);
     }
 
+    @CachePut("subjects")
     @Transactional
     @Override
     public Subject save(Subject subject) {
@@ -46,6 +49,7 @@ public class EducationProcessService implements IEducationProcessService{
         return studentRepository.save(student);
     }
 
+    @CachePut("teachers")
     @Transactional
     @Override
     public Teacher save(Teacher teacher) {
@@ -54,7 +58,7 @@ public class EducationProcessService implements IEducationProcessService{
 
     @Transactional
     @Override
-    public User save(User user) {
+    public Users save(Users user) {
         return userRepository.save(user);
     }
 
@@ -65,6 +69,7 @@ public class EducationProcessService implements IEducationProcessService{
         avatarRepository.delete(avatar);
     }
 
+    @CacheEvict("subjects")
     @Transactional
     @Override
     public void delete(Subject subject) {
@@ -77,6 +82,7 @@ public class EducationProcessService implements IEducationProcessService{
         studentRepository.delete(student);
     }
 
+    @CacheEvict("teachers")
     @Transactional
     @Override
     public void delete(Teacher teacher) {
