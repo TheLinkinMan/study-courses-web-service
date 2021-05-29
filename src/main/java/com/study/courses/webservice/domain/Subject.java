@@ -28,8 +28,10 @@ public class Subject extends RepresentationModel<Subject> {
     private String name;
 
     @NotNull(message = "Часы долны быть заданы")
-    @Size(min = 2, max = 3)
     private int hours;
+
+    @NotNull(message = "Уровень должен быть выбран")
+    private String CEFR;
 
     @ManyToOne(targetEntity = Teacher.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_teacher")
@@ -43,8 +45,4 @@ public class Subject extends RepresentationModel<Subject> {
     @ManyToOne(targetEntity = Language.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_language")
     private Language language;
-
-    @NotNull(message = "Уровень должен быть выбран")
-    @Enumerated(EnumType.STRING)
-    private CEFR CEFR;
 }

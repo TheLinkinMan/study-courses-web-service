@@ -8,6 +8,7 @@ import com.study.courses.webservice.service.EducationReaderService;
 import lombok.AllArgsConstructor;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,11 +59,37 @@ public class TeacherController {
 
     @PostMapping("/teacher")
     public ResponseEntity<Teacher> save(@Valid @RequestBody Teacher teacher) {
-        return ResponseEntity.ok(educationProcessService.save(teacher));
+        Teacher currentTeacher = educationProcessService.save(teacher);
+        if (currentTeacher == null) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            Link link = linkTo(methodOn(TeacherController.class).find(currentTeacher.getId())).withSelfRel();
+
+            return ResponseEntity.created(link.toUri()).build();
+        }
     }
 
     @PutMapping("/teacher")
     public ResponseEntity<Teacher> update(@Valid @RequestBody Teacher teacher) {
-        return ResponseEntity.ok(educationProcessService.save(teacher));
+        Teacher currentTeacher = educationReaderService.findTeacher(teacher.getId());
+        if (currentTeacher == null) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            educationProcessService.save(teacher);
+
+            return ResponseEntity.accepted().build();
+        }
+    }
+
+    @DeleteMapping("/teacher")
+    private ResponseEntity<Object> delete(@RequestBody Teacher teacher) {
+        Teacher currentTeacher = educationReaderService.findTeacher(teacher.getId());
+        if (currentTeacher == null) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            educationProcessService.delete(teacher);
+
+            return ResponseEntity.accepted().build();
+        }
     }
 }

@@ -19,8 +19,8 @@ public class Language {
 
     private String name;
 
-    @ManyToMany(targetEntity = Teacher.class, fetch = FetchType.LAZY)
-    @JoinTable(name = "teacher_languages", joinColumns = @JoinColumn(name = "id_language"),
-            inverseJoinColumns = @JoinColumn(name = "id_teacher"))
-    private List<Teacher> teachers;
+//    @ManyToMany(targetEntity = Teacher.class, fetch = FetchType.LAZY)
+//    @JoinTable(name = "teacher_languages", joinColumns = @JoinColumn(name = "id_language"),
+//            inverseJoinColumns = @JoinColumn(name = "id_teacher"))
+//    private List<Teacher> teachers;
 }
