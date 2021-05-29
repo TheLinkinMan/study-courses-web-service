@@ -1,14 +1,21 @@
 package com.study.courses.webservice.controller;
 
+import com.study.courses.webservice.domain.Subject;
 import com.study.courses.webservice.domain.Teacher;
+import com.study.courses.webservice.domain.TeacherAssembler;
 import com.study.courses.webservice.service.EducationProcessService;
 import com.study.courses.webservice.service.EducationReaderService;
 import lombok.AllArgsConstructor;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @AllArgsConstructor
 @RestController
@@ -19,14 +26,34 @@ public class TeacherController {
 
     private final EducationProcessService educationProcessService;
 
-    @GetMapping("/")
-    public ResponseEntity<List<Teacher>> findAll() {
-        return ResponseEntity.ok(educationReaderService.findAllTeachers());
+    private final TeacherAssembler teacherAssembler;
+
+    @GetMapping()
+    public ResponseEntity<CollectionModel<EntityModel<Teacher>>> findAll() {
+        return ResponseEntity.ok(teacherAssembler.toCollectionModel(educationReaderService.findAllTeachers()));
     }
 
     @GetMapping("/teacher/{id}")
-    public ResponseEntity<Teacher> find(@PathVariable Long id) {
-        return ResponseEntity.ok(educationReaderService.findTeacher(id));
+    public ResponseEntity<EntityModel<Teacher>> find(@PathVariable Long id) {
+        Teacher teacher = educationReaderService.findTeacher(id);
+        if (teacher == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            EntityModel<Teacher> teacherRepresentation = teacherAssembler.toModel(teacher)
+                    .add(linkTo(methodOn(TeacherController.class).findAll()).withRel("teachers"));
+
+            return ResponseEntity.ok(teacherRepresentation);
+        }
+    }
+
+    @GetMapping("/teacher/{id}/subjects")
+    public ResponseEntity<CollectionModel<Subject>> findAllSubjects(@PathVariable Long id) {
+        Teacher teacher = educationReaderService.findTeacher(id);
+        List<Subject> subjects = educationReaderService.findAllSubjects(teacher);
+        subjects.forEach(s ->
+                s.add(linkTo(methodOn(SubjectController.class).findSubject(s.getId())).withSelfRel()));
+
+        return ResponseEntity.ok(CollectionModel.of(subjects));
     }
 
     @PostMapping("/teacher")

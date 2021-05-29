@@ -27,8 +27,6 @@ public interface IEducationReaderService {
 
     Teacher findTeacher(Long id);
 
-    Teacher findTeacher(Subject subject);
-
     Language findLanguage(Long id);
 
     Student findStudent(Long id);

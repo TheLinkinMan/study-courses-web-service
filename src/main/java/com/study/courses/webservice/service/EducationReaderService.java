@@ -81,11 +81,6 @@ public class EducationReaderService implements IEducationReaderService {
     }
 
     @Override
-    public Teacher findTeacher(Subject subject) {
-        return teacherRepository.findBySubjectsIs(subject).orElse(null);
-    }
-
-    @Override
     public Student findStudent(Long id) {
         return studentRepository.findById(id).orElse(null);
     }

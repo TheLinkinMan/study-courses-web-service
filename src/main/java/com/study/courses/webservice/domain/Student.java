@@ -8,7 +8,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.Set;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -48,7 +49,7 @@ public class Student {
     @ManyToMany(targetEntity = Subject.class, fetch = FetchType.LAZY)
     @JoinTable(name = "student_program", joinColumns = @JoinColumn(name = "id_student"),
             inverseJoinColumns = @JoinColumn(name = "id_subject"))
-    private Set<Subject> subjects;
+    private List<Subject> subjects;
 
     @OneToOne(targetEntity = Users.class)
     @JoinColumn(name = "login")

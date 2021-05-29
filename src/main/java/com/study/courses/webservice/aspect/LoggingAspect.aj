@@ -1,11 +1,11 @@
 package com.study.courses.webservice.aspect;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.java.Log;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.reflect.MethodSignature;
 
-@Slf4j
+@Log
 public aspect LoggingAspect {
 
     @Around("execution(* com.study.courses.webservice.service.*.*(..))")
